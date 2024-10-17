@@ -20,7 +20,6 @@
 		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
 		<PackageVersion Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" />
 		<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
-		<PackageVersion Include="Nerdbank.GitVersioning" Version="3.6.143" />
 		<PackageVersion Include="System.IO.Pipelines" Version="8.0.0" />
 		<PackageVersion Include="System.Memory" Version="4.5.5" />
 		<PackageVersion Include="System.Reactive" Version="6.0.1" />

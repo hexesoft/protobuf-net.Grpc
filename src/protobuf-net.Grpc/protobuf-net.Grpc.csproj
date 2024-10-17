@@ -4,8 +4,6 @@
 		<TargetFrameworks>net8.0</TargetFrameworks>
 		<DefineConstants>$(DefineConstants);PLAT_NO_CHANNEL_READALLASYNC</DefineConstants>
 		<RootNamespace>ProtoBuf.Grpc</RootNamespace>
-		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/protobuf-net/protobuf-net.Grpc</RepositoryUrl>
 
 		<!-- Hexesoft -->
 		<PackageId>Hexesoft.ProtoBuf.Grpc</PackageId>

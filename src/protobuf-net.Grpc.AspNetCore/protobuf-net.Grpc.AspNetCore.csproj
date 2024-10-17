@@ -3,8 +3,6 @@
 	<PropertyGroup>
 		<TargetFrameworks>net8.0</TargetFrameworks>
 		<RootNamespace>ProtoBuf.Grpc.Server</RootNamespace>
-		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/protobuf-net/protobuf-net.Grpc</RepositoryUrl>
 
 		<!-- Hexesoft -->
 		<PackageId>Hexesoft.ProtoBuf.Grpc.Server</PackageId>
