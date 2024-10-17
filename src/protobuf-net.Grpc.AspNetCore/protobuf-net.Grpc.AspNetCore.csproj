@@ -5,7 +5,7 @@
 		<RootNamespace>ProtoBuf.Grpc.Server</RootNamespace>
 
 		<!-- Hexesoft -->
-		<PackageId>Hexesoft.ProtoBuf.Grpc.Server</PackageId>
+		<PackageId>Hexesoft.ProtoBuf.Grpc.AspNetCore</PackageId>
 		<IsPackable>true</IsPackable>
 		<PackageProjectUrl>https://github.com/hexesoft/protobuf-net.Grpc</PackageProjectUrl>
 		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
