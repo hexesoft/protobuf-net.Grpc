@@ -1,12 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
-    <RootNamespace>ProtoBuf.Grpc.Server</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFrameworks>net8.0</TargetFrameworks>
+		<RootNamespace>ProtoBuf.Grpc.Server</RootNamespace>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/protobuf-net/protobuf-net.Grpc</RepositoryUrl>
 
-  <ItemGroup>
-    <ProjectReference Include="..\protobuf-net.Grpc\protobuf-net.Grpc.csproj" />
-    <PackageReference Include="Grpc.AspNetCore.Server" />
-  </ItemGroup>
+		<!-- Hexesoft -->
+		<PackageId>Hexesoft.ProtoBuf.Grpc.Server</PackageId>
+		<IsPackable>true</IsPackable>
+		<PackageProjectUrl>https://github.com/hexesoft/protobuf-net.Grpc</PackageProjectUrl>
+		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
+		<Version Condition="'$(BUILD_BUILDNUMBER)' == ''">$([System.DateTime]::Now.ToString('yyyy.M.d'))-dev</Version>
+		<Version Condition="'$(BUILD_BUILDNUMBER)' != ''">$(BUILD_BUILDNUMBER)</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\protobuf-net.Grpc\protobuf-net.Grpc.csproj" />
+		<PackageReference Include="Grpc.AspNetCore.Server" />
+	</ItemGroup>
+
 </Project>

@@ -1,24 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFrameworks>net462;netstandard2.1;netstandard2.0;net6.0;net8.0</TargetFrameworks>
-        <RootNamespace>ProtoBuf.Grpc</RootNamespace>
-        <DefineConstants>$(DefineConstants);PLAT_NO_CHANNEL_READALLASYNC</DefineConstants>
-    </PropertyGroup>
-    <ItemGroup>
-        <PackageReference Include="Grpc.Core.Api" />
-        <PackageReference Include="protobuf-net" VersionOverride="$(ProtoBufNet2Version)" />
-        <PackageReference Include="System.IO.Pipelines" />
-    </ItemGroup>
-    <ItemGroup Condition="'$(TargetFramework)' == 'net462' or '$(TargetFramework)' == 'netstandard2.0'">
-        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" />
-        <PackageReference Include="System.Threading.Channels" />
-    </ItemGroup>
-    <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
-        <!-- need to be explicit to avoid fight with System.IO.Pipelines -->
-        <PackageReference Include="System.ValueTuple" />
-    </ItemGroup>
-    <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-        <PackageReference Include="System.Threading.Channels" />
-        <PackageReference Include="System.Runtime.CompilerServices.Unsafe" />
-    </ItemGroup>
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0</TargetFrameworks>
+		<DefineConstants>$(DefineConstants);PLAT_NO_CHANNEL_READALLASYNC</DefineConstants>
+		<RootNamespace>ProtoBuf.Grpc</RootNamespace>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/protobuf-net/protobuf-net.Grpc</RepositoryUrl>
+
+		<!-- Hexesoft -->
+		<PackageId>Hexesoft.ProtoBuf.Grpc</PackageId>
+		<PackageProjectUrl>https://github.com/hexesoft/protobuf-net.Grpc</PackageProjectUrl>
+		<IsPackable>true</IsPackable>
+		<GeneratePackageOnBuild Condition="'$(Configuration)' == 'Release'">true</GeneratePackageOnBuild>
+		<Version Condition="'$(BUILD_BUILDNUMBER)' == ''">$([System.DateTime]::Now.ToString('yyyy.M.d'))-dev</Version>
+		<Version Condition="'$(BUILD_BUILDNUMBER)' != ''">$(BUILD_BUILDNUMBER)</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Grpc.Core.Api" />
+		<PackageReference Include="protobuf-net" />
+		<PackageReference Include="System.IO.Pipelines" />
+	</ItemGroup>
+
 </Project>

@@ -40,7 +40,7 @@ namespace ProtoBuf.Grpc.Configuration
             Type[] typesBuffer = [];
             binderConfiguration ??= BinderConfiguration.Default;
             var potentialServiceContracts = typeof(IGrpcService).IsAssignableFrom(serviceType)
-                ? new HashSet<Type> {serviceType}
+                ? new HashSet<Type> { serviceType }
                 : ContractOperation.ExpandInterfaces(serviceType);
 
             bool serviceImplSimplifiedExceptions = serviceType.IsDefined(typeof(SimpleRpcExceptionsAttribute));
@@ -50,7 +50,7 @@ namespace ProtoBuf.Grpc.Configuration
 
                 // now that we know it is a service contract type for sure
                 var serviceContract = potentialServiceContract;
-                
+
                 var typesToBeIncludedInMethodsBinding =
                     ContractOperation.ExpandWithInterfacesMarkedAsSubService(binderConfiguration.Binder, serviceContract);
 
@@ -64,7 +64,7 @@ namespace ProtoBuf.Grpc.Configuration
                     var serviceContractSimplifiedExceptions = serviceImplSimplifiedExceptions ||
                                                               typeToBindItsMethods.IsDefined(
                                                                   typeof(SimpleRpcExceptionsAttribute));
-                    var bindCtx = new ServiceBindContext(serviceContract, serviceType, state, binderConfiguration.Binder);
+                    var bindCtx = new ServiceBindContext(typeToBindItsMethods, serviceType, state, binderConfiguration.Binder);
                     foreach (var op in ContractOperation.FindOperations(binderConfiguration, typeToBindItsMethods, this))
                     {
                         if (ServerInvokerLookup.TryGetValue(op.MethodType, op.Context, op.Arg, op.Result, op.Void, out var invoker)
@@ -114,7 +114,7 @@ namespace ProtoBuf.Grpc.Configuration
                     // 6, 7 set during array initialization
                     argsBuffer[8] = simplifiedExceptionHandling;
 
-                    return (bool) s_addMethod.MakeGenericMethod(typesBuffer).Invoke(this, argsBuffer)!;
+                    return (bool)s_addMethod.MakeGenericMethod(typesBuffer).Invoke(this, argsBuffer)!;
                 }
                 catch (Exception fail)
                 {
@@ -180,7 +180,7 @@ namespace ProtoBuf.Grpc.Configuration
                     else
                     {
                         // basic - direct call
-                        return (TDelegate) Delegate.CreateDelegate(typeof(TDelegate), _service, Method);
+                        return (TDelegate)Delegate.CreateDelegate(typeof(TDelegate), _service, Method);
                     }
                 }
                 else
@@ -234,8 +234,8 @@ namespace ProtoBuf.Grpc.Configuration
 #pragma warning disable CS0618
         private static readonly Dictionary<int, MethodInfo> s_ReshapeWithSimpleExceptionHandling =
             (from method in typeof(Reshape).GetMethods(BindingFlags.Public | BindingFlags.Static)
-                where method.Name is nameof(Reshape.WithSimpleExceptionHandling)
-                select method)
+             where method.Name is nameof(Reshape.WithSimpleExceptionHandling)
+             select method)
             .ToDictionary(method => method.IsGenericMethodDefinition ? method.GetGenericArguments().Length : 0);
 #pragma warning restore CS0618
 
