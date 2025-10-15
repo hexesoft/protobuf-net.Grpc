@@ -17,7 +17,6 @@
 	<ItemGroup>
 		<PackageReference Include="Grpc.Core.Api" />
 		<PackageReference Include="protobuf-net" />
-		<PackageReference Include="System.IO.Pipelines" />
 	</ItemGroup>
 
 </Project>
